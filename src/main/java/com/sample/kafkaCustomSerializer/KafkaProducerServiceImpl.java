@@ -34,7 +34,6 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
     @Override
     public boolean sendMessage(boolean async, Message message) throws InterruptedException, ExecutionException {
         try {
-            //byte[] bytes = objectMapper.writeValueAsBytes(message);
             ProducerRecord<String, Object> rec = new ProducerRecord<String, Object>(topicName, message);
             if (async) {
                 producer.send(rec);

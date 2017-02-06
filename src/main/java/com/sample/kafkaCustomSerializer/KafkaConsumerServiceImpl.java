@@ -42,7 +42,6 @@ public class KafkaConsumerServiceImpl implements KafkaConsumerService {
                     ConsumerRecords<String, Object> records = consumer.poll(100);
                     for (ConsumerRecord<String, Object> record : records) {
                         byte[] bytes = (byte[]) record.value();
-                        //System.out.println(objectMapper.treeToValue(jsonNode, Message.class));
                         callback.accept((T) objectMapper.readValue(bytes, Message.class));
                     }
                 } catch (Exception ex) {
